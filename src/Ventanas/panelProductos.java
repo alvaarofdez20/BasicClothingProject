@@ -3,6 +3,7 @@ package Ventanas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
@@ -250,6 +251,30 @@ public class panelProductos extends javax.swing.JPanel {
                 
             } catch (Exception e) {
             }
+        } catch (Exception e) {
+        }
+    }
+    
+    public void agregarProducto(){
+        try {
+            ConexionBD conect = new ConexionBD();
+            conect.conexion();
+            
+            String referencia = textFieldReferencia.getText();
+            String nombre = textFieldNombre.getText();
+            String talla = comboBoxTalla.getSelectedItem().toString();
+            String precio = textFieldPrecio.getText();
+            String cantidad = textFieldCantidad.getText();
+            
+            String consultaSQL;
+            PreparedStatement ps;
+            ResultSet rs;
+            
+            try {
+                consultaSQL = "INSERT INTO producto";
+            } catch (Exception e) {
+            }
+            
         } catch (Exception e) {
         }
     }
