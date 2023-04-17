@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Ventanas;
 
 import java.sql.PreparedStatement;
@@ -47,7 +43,7 @@ public class Login extends javax.swing.JFrame {
         setExtendedState(6);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,7 +96,7 @@ public class Login extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 886, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -118,9 +114,9 @@ public class Login extends javax.swing.JFrame {
         passwordField.setBackground(new java.awt.Color(255, 255, 255));
         passwordField.setForeground(new java.awt.Color(0, 0, 0));
 
-        btnLogin.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogin.setBackground(new java.awt.Color(0, 153, 153));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(0, 0, 0));
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("INICIAR \nSESIÓN");
         btnLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {

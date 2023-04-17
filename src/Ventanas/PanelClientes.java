@@ -37,6 +37,8 @@ public class PanelClientes extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -70,7 +72,7 @@ public class PanelClientes extends javax.swing.JPanel {
             ConexionBD conect = new ConexionBD();
             conect.conexion();
 
-            String[] columnas = {"DNI", "Nombre", "Apellidos", "Correo Electrnico", "Teléfono"};
+            String[] columnas = {"DNI", "Nombre", "Apellidos", "Correo Electrónico", "Teléfono"};
             String[] filas = new String[5];
 
             DefaultTableModel tabla = new DefaultTableModel(null, columnas);

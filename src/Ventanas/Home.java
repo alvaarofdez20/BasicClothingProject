@@ -52,11 +52,11 @@ public class Home extends javax.swing.JFrame {
             .addGap(0, 943, Short.MAX_VALUE)
         );
 
-        PanelAdministracion.setBackground(new java.awt.Color(0, 0, 0));
+        PanelAdministracion.setBackground(new java.awt.Color(0, 102, 102));
 
-        btnProductos.setBackground(new java.awt.Color(255, 255, 255));
+        btnProductos.setBackground(new java.awt.Color(0, 153, 153));
         btnProductos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnProductos.setForeground(new java.awt.Color(0, 0, 0));
+        btnProductos.setForeground(new java.awt.Color(255, 255, 255));
         btnProductos.setText("PRODUCTOS");
         btnProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -65,9 +65,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        btnPedidos.setBackground(new java.awt.Color(255, 255, 255));
+        btnPedidos.setBackground(new java.awt.Color(0, 153, 153));
         btnPedidos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnPedidos.setForeground(new java.awt.Color(0, 0, 0));
+        btnPedidos.setForeground(new java.awt.Color(255, 255, 255));
         btnPedidos.setText("PEDIDOS");
         btnPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,9 +75,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        btnClientes.setBackground(new java.awt.Color(255, 255, 255));
+        btnClientes.setBackground(new java.awt.Color(0, 153, 153));
         btnClientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnClientes.setForeground(new java.awt.Color(0, 0, 0));
+        btnClientes.setForeground(new java.awt.Color(255, 255, 255));
         btnClientes.setText("CLIENTES");
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,15 +85,16 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        labelUsuario.setBackground(new java.awt.Color(0, 153, 153));
         labelUsuario.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelUsuario.setForeground(new java.awt.Color(255, 255, 255));
         labelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        labelUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
         labelUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        btnLogout.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogout.setBackground(new java.awt.Color(0, 153, 153));
         btnLogout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnLogout.setForeground(new java.awt.Color(0, 0, 0));
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
         btnLogout.setText("CERRAR SESIÓN");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,13 +125,14 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PanelAdministracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                    .addGroup(PanelAdministracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                        .addComponent(btnPedidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnProductos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(labelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                    .addComponent(btnPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -191,9 +193,9 @@ public class Home extends javax.swing.JFrame {
         jPanel1.revalidate();
         jPanel1.repaint();
         
-        btnProductos.setBackground(Color.GRAY);
-        btnPedidos.setBackground(Color.WHITE);
-        btnClientes.setBackground(Color.WHITE);
+        /*btnProductos.setBackground(Color.getHSBColor(180, 100, 60));
+        btnPedidos.setBackground(Color.getHSBColor(0, 153, 153));
+        btnClientes.setBackground(Color.getHSBColor(0, 153, 153));*/
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
@@ -206,9 +208,9 @@ public class Home extends javax.swing.JFrame {
         jPanel1.revalidate();
         jPanel1.repaint();
         
-        btnProductos.setBackground(Color.WHITE);
-        btnPedidos.setBackground(Color.GRAY);
-        btnClientes.setBackground(Color.WHITE);
+        /*btnProductos.setBackground(Color.getHSBColor(0, 153, 153));
+        btnPedidos.setBackground(Color.getHSBColor(0, 102, 102));
+        btnClientes.setBackground(Color.getHSBColor(0, 153, 153));*/
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
@@ -221,9 +223,9 @@ public class Home extends javax.swing.JFrame {
         jPanel1.revalidate();
         jPanel1.repaint();
         
-        btnProductos.setBackground(Color.WHITE);
-        btnPedidos.setBackground(Color.WHITE);
-        btnClientes.setBackground(Color.GRAY);
+        /*btnProductos.setBackground(Color.getHSBColor(0, 153, 153));
+        btnPedidos.setBackground(Color.getHSBColor(0, 153, 153));
+        btnClientes.setBackground(Color.getHSBColor(0, 102, 102));*/
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
