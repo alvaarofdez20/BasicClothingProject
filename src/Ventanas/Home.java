@@ -1,7 +1,7 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,6 +33,7 @@ public class Home extends javax.swing.JFrame {
         btnClientes = new javax.swing.JButton();
         labelUsuario = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -102,6 +103,16 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("EMPLEADOS");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelAdministracionLayout = new javax.swing.GroupLayout(PanelAdministracion);
         PanelAdministracion.setLayout(PanelAdministracionLayout);
         PanelAdministracionLayout.setHorizontalGroup(
@@ -114,7 +125,9 @@ public class Home extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(labelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -128,7 +141,8 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(labelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                     .addComponent(btnPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -187,45 +201,33 @@ public class Home extends javax.swing.JFrame {
         panelProductos productos = new panelProductos();
         productos.setSize(1920, 943);
         productos.setLocation(0, 0);
-        
+
         jPanel1.removeAll();
         jPanel1.add(productos, BorderLayout.CENTER);
         jPanel1.revalidate();
         jPanel1.repaint();
-        
-        /*btnProductos.setBackground(Color.getHSBColor(180, 100, 60));
-        btnPedidos.setBackground(Color.getHSBColor(0, 153, 153));
-        btnClientes.setBackground(Color.getHSBColor(0, 153, 153));*/
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
         PanelPedidos pedidos = new PanelPedidos();
         pedidos.setSize(1920, 943);
         pedidos.setLocation(0, 0);
-        
+
         jPanel1.removeAll();
         jPanel1.add(pedidos, BorderLayout.CENTER);
         jPanel1.revalidate();
         jPanel1.repaint();
-        
-        /*btnProductos.setBackground(Color.getHSBColor(0, 153, 153));
-        btnPedidos.setBackground(Color.getHSBColor(0, 102, 102));
-        btnClientes.setBackground(Color.getHSBColor(0, 153, 153));*/
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         PanelClientes clientes = new PanelClientes();
         clientes.setSize(1920, 943);
         clientes.setLocation(0, 0);
-        
+
         jPanel1.removeAll();
         jPanel1.add(clientes, BorderLayout.CENTER);
         jPanel1.revalidate();
         jPanel1.repaint();
-        
-        /*btnProductos.setBackground(Color.getHSBColor(0, 153, 153));
-        btnPedidos.setBackground(Color.getHSBColor(0, 153, 153));
-        btnClientes.setBackground(Color.getHSBColor(0, 102, 102));*/
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -233,8 +235,26 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres cerrar la sesión?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            this.setVisible(false);
+            Login login = new Login();
+            login.setVisible(true);
+            login.setLocationRelativeTo(null);
+        } else {
+            
+        }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        panelEmpleados empleados = new panelEmpleados();
+        empleados.setSize(1920, 943);
+        empleados.setLocation(0, 0);
+
+        jPanel1.removeAll();
+        jPanel1.add(empleados, BorderLayout.CENTER);
+        jPanel1.revalidate();
+        jPanel1.repaint();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,6 +298,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnPedidos;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     public javax.swing.JLabel labelUsuario;

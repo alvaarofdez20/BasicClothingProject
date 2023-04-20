@@ -18,7 +18,6 @@ public class panelProductos extends javax.swing.JPanel {
     public panelProductos() {
         initComponents();
         mostrarProductos();
-        mostrarTallas();
         filtros();
     }
 
@@ -44,6 +43,8 @@ public class panelProductos extends javax.swing.JPanel {
         labelFiltros = new javax.swing.JLabel();
         comboBoxFiltros = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
+        labelTalla1 = new javax.swing.JLabel();
+        comboBoxTipo = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(0, 0, 0));
@@ -162,6 +163,20 @@ public class panelProductos extends javax.swing.JPanel {
             }
         });
 
+        labelTalla1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelTalla1.setForeground(new java.awt.Color(0, 0, 0));
+        labelTalla1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTalla1.setText("TIPO");
+
+        comboBoxTipo.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxTipo.setForeground(new java.awt.Color(0, 0, 0));
+        comboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ropa", "Calzado" }));
+        comboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxTipoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,7 +207,9 @@ public class panelProductos extends javax.swing.JPanel {
                     .addComponent(labelNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldReferencia)
                     .addComponent(labelReferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelTalla1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -206,7 +223,7 @@ public class panelProductos extends javax.swing.JPanel {
                         .addComponent(comboBoxFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,6 +233,10 @@ public class panelProductos extends javax.swing.JPanel {
                         .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelTalla1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(labelTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -228,7 +249,7 @@ public class panelProductos extends javax.swing.JPanel {
                         .addComponent(labelCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,16 +276,35 @@ public class panelProductos extends javax.swing.JPanel {
         filtros();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void comboBoxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTipoActionPerformed
+        boolean ropa = false;
+        boolean calzado = false;
+
+        if (comboBoxTipo.getSelectedItem().toString().equals("Ropa")) {
+            ropa = true;
+            calzado = false;
+        } else if (comboBoxTipo.getSelectedItem().toString().equals("Calzado")) {
+            ropa = false;
+            calzado = true;
+        }
+
+        if (ropa) {
+            mostrarTallasRopa();
+        } else if (calzado) {
+            mostrarTallasCalzado();
+        }
+    }//GEN-LAST:event_comboBoxTipoActionPerformed
+
     public void mostrarProductos() {
         ConexionBD conect = new ConexionBD();
         conect.conexion();
 
-        String[] columnas = {"Referencia", "Nombre", "Talla", "Precio", "Cantidad"};
-        String[] filas = new String[5];
+        String[] columnas = {"Referencia", "Nombre", "Tipo", "Talla", "Precio", "Cantidad"};
+        String[] filas = new String[6];
 
         DefaultTableModel tabla = new DefaultTableModel(null, columnas);
 
-        String consultaSQL = "SELECT P.referencia, P.nombre, T.talla, P.precio, P.cantidad "
+        String consultaSQL = "SELECT P.referencia, P.nombre, P.tipo, T.talla, P.precio, P.cantidad "
                 + "FROM producto P, talla T "
                 + "WHERE P.talla = T.talla";
 
@@ -275,9 +315,10 @@ public class panelProductos extends javax.swing.JPanel {
             while (rs.next()) {
                 filas[0] = rs.getString("referencia");
                 filas[1] = rs.getString("nombre");
-                filas[2] = rs.getString("talla");
-                filas[3] = rs.getString("precio");
-                filas[4] = rs.getString("cantidad");
+                filas[2] = rs.getString("tipo");
+                filas[3] = rs.getString("talla");
+                filas[4] = rs.getString("precio");
+                filas[5] = rs.getString("cantidad");
 
                 tabla.addRow(filas);
             }
@@ -288,7 +329,7 @@ public class panelProductos extends javax.swing.JPanel {
         }
     }
 
-    public void mostrarTallas() {
+    public void mostrarTallasRopa() {
         try {
             ConexionBD conect = new ConexionBD();
             conect.conexion();
@@ -299,9 +340,36 @@ public class panelProductos extends javax.swing.JPanel {
             DefaultComboBoxModel combo = new DefaultComboBoxModel();
             comboBoxTalla.setModel(combo);
 
-            String consultaSQL = "SELECT T.talla "
-                    + "FROM producto P, talla T "
-                    + "WHERE P.talla = T.talla;";
+            String consultaSQL = "SELECT * FROM talla WHERE id <=8;";
+
+            try {
+                st = conect.conect.createStatement();
+                rs = st.executeQuery(consultaSQL);
+
+                while (rs.next()) {
+                    combo.addElement(rs.getString("talla"));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mostrarTallasCalzado() {
+        try {
+            ConexionBD conect = new ConexionBD();
+            conect.conexion();
+
+            Statement st;
+            ResultSet rs;
+
+            DefaultComboBoxModel combo = new DefaultComboBoxModel();
+            comboBoxTalla.setModel(combo);
+
+            String consultaSQL = "SELECT * FROM talla WHERE id >=9 AND id <= 19;";
 
             try {
                 st = conect.conect.createStatement();
@@ -603,6 +671,7 @@ public class panelProductos extends javax.swing.JPanel {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> comboBoxFiltros;
     private javax.swing.JComboBox<String> comboBoxTalla;
+    private javax.swing.JComboBox<String> comboBoxTipo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelCantidad;
@@ -611,6 +680,7 @@ public class panelProductos extends javax.swing.JPanel {
     private javax.swing.JLabel labelPrecio;
     private javax.swing.JLabel labelReferencia;
     private javax.swing.JLabel labelTalla;
+    private javax.swing.JLabel labelTalla1;
     private javax.swing.JTextField textFieldCantidad;
     private javax.swing.JTextField textFieldNombre;
     private javax.swing.JTextField textFieldPrecio;
