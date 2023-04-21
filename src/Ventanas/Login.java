@@ -198,7 +198,7 @@ public class Login extends javax.swing.JFrame {
             
             String usuario = textFieldUser.getText();
             String password = new String(passwordField.getPassword());
-            consultaSQL = "SELECT * FROM empleado WHERE username = ? AND password = ?";
+            consultaSQL = "SELECT * FROM empleado WHERE usuario = ? AND contrasenia = ?";
             
             ps = conect.conect.prepareStatement(consultaSQL);
             ps.setString(1, usuario);

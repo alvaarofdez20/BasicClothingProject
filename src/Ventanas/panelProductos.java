@@ -70,6 +70,7 @@ public class panelProductos extends javax.swing.JPanel {
         textFieldReferencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         textFieldReferencia.setForeground(new java.awt.Color(0, 0, 0));
         textFieldReferencia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldReferencia.setToolTipText("");
 
         labelNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelNombre.setForeground(new java.awt.Color(0, 0, 0));
@@ -299,8 +300,11 @@ public class panelProductos extends javax.swing.JPanel {
         ConexionBD conect = new ConexionBD();
         conect.conexion();
 
-        String[] columnas = {"Referencia", "Nombre", "Tipo", "Talla", "Precio", "Cantidad"};
-        String[] filas = new String[6];
+        String[] columnas = {"Referencia", "Nombre", "Tipo", "Talla", "Precio", "Cantidad", "Editar"};
+        String[] filas = new String[7];
+        
+        JButton btnEditar = new JButton("Editar");
+        btnEditar.setName("e");
 
         DefaultTableModel tabla = new DefaultTableModel(null, columnas);
 
@@ -387,7 +391,7 @@ public class panelProductos extends javax.swing.JPanel {
         }
     }
 
-    public void eliminarProductos() {
+    public void eliminarProductos() { 
         try {
             ConexionBD conect = new ConexionBD();
             conect.conexion();

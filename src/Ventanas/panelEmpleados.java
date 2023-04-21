@@ -4,6 +4,7 @@
  */
 package Ventanas;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,10 +21,10 @@ public class panelEmpleados extends javax.swing.JPanel {
      */
     public panelEmpleados() {
         initComponents();
-        mostrarProductos();
+        mostrarEmpleados();
     }
 
-    public void mostrarProductos() {
+    public void mostrarEmpleados() {
         ConexionBD conect = new ConexionBD();
         conect.conexion();
 
@@ -32,7 +33,7 @@ public class panelEmpleados extends javax.swing.JPanel {
 
         DefaultTableModel tabla = new DefaultTableModel(null, columnas);
 
-        String consultaSQL = "SELECT dni, nombre, apellidos, email, username FROM empleado";
+        String consultaSQL = "SELECT dni, nombre, apellidos, email, usuario FROM empleado";
 
         try {
             Statement st = conect.conect.createStatement();
@@ -43,11 +44,81 @@ public class panelEmpleados extends javax.swing.JPanel {
                 filas[1] = rs.getString("nombre");
                 filas[2] = rs.getString("apellidos");
                 filas[3] = rs.getString("email");
-                filas[4] = rs.getString("username");
+                filas[4] = rs.getString("usuario");
 
                 tabla.addRow(filas);
             }
-            jTable1.setModel(tabla);
+            tablaEmpleados.setModel(tabla);
+            conect.conect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void agregarEmpleado() {
+        try {
+            ConexionBD conect = new ConexionBD();
+            conect.conexion();
+
+            String dni = textFieldDNI.getText();
+            String nombre = textFieldNombre.getText();
+            String apellidos = textFieldApellidos.getText();
+            String email = textFieldCorreo.getText();
+            String username = textFieldUsuario.getText();
+            String password = textFieldPassword.getText();
+
+            String consultaSQL;
+            PreparedStatement ps;
+
+            try {
+                consultaSQL = "INSERT INTO empleado(DNI, nombre, apellidos, email, usuario, contrasenia) VALUES (?, ?, ?, ?, ?, ?)";
+                ps = conect.conect.prepareStatement(consultaSQL);
+
+                // RELLENAMOS LAS INTERROGACIONES CON LOS DATOS
+                ps.setString(1, dni);
+                ps.setString(2, nombre);
+                ps.setString(3, apellidos);
+                ps.setString(4, email);
+                ps.setString(5, username);
+                ps.setString(6, password);
+
+                ps.executeUpdate();
+
+                limpiar();
+                mostrarEmpleados();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            conect.conect.close();
+        } catch (NumberFormatException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void limpiar(){
+        textFieldDNI.setText("");
+        textFieldNombre.setText("");
+        textFieldApellidos.setText("");
+        textFieldCorreo.setText("");
+        textFieldUsuario.setText("");
+        textFieldPassword.setText("");
+    }
+    
+    public void eliminarEmpleado() {
+        try {
+            ConexionBD conect = new ConexionBD();
+            conect.conexion();
+
+            int filaSeleccionada = tablaEmpleados.getSelectedRow();
+
+            String sql = "DELETE FROM empleado WHERE DNI = '" + tablaEmpleados.getValueAt(filaSeleccionada, 0) + "'";
+
+            Statement st = conect.conect.createStatement();
+
+            st.executeUpdate(sql);
+            
+            mostrarEmpleados();
+            
             conect.conect.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -59,26 +130,28 @@ public class panelEmpleados extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        labelReferencia = new javax.swing.JLabel();
-        textFieldReferencia = new javax.swing.JTextField();
-        labelReferencia1 = new javax.swing.JLabel();
-        textFieldReferencia1 = new javax.swing.JTextField();
-        labelReferencia2 = new javax.swing.JLabel();
-        textFieldReferencia2 = new javax.swing.JTextField();
-        labelReferencia3 = new javax.swing.JLabel();
-        textFieldReferencia3 = new javax.swing.JTextField();
-        labelReferencia4 = new javax.swing.JLabel();
-        textFieldReferencia4 = new javax.swing.JTextField();
-        labelReferencia5 = new javax.swing.JLabel();
-        textFieldReferencia5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        tablaEmpleados = new javax.swing.JTable();
+        labelDNI = new javax.swing.JLabel();
+        textFieldDNI = new javax.swing.JTextField();
+        labelNombre = new javax.swing.JLabel();
+        textFieldNombre = new javax.swing.JTextField();
+        labelApellidos = new javax.swing.JLabel();
+        textFieldApellidos = new javax.swing.JTextField();
+        labelCorreo = new javax.swing.JLabel();
+        textFieldCorreo = new javax.swing.JTextField();
+        labelUsuario = new javax.swing.JLabel();
+        textFieldUsuario = new javax.swing.JTextField();
+        labelPassword = new javax.swing.JLabel();
+        textFieldPassword = new javax.swing.JTextField();
+        btnAgregar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEmpleados.setBackground(new java.awt.Color(255, 255, 255));
+        tablaEmpleados.setForeground(new java.awt.Color(0, 0, 0));
+        tablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -86,73 +159,100 @@ public class panelEmpleados extends javax.swing.JPanel {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaEmpleados);
 
-        labelReferencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelReferencia.setForeground(new java.awt.Color(0, 0, 0));
-        labelReferencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelReferencia.setText("DNI");
+        labelDNI.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelDNI.setForeground(new java.awt.Color(0, 0, 0));
+        labelDNI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDNI.setText("DNI");
 
-        textFieldReferencia.setBackground(new java.awt.Color(255, 255, 255));
-        textFieldReferencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        textFieldReferencia.setForeground(new java.awt.Color(0, 0, 0));
-        textFieldReferencia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldDNI.setBackground(new java.awt.Color(255, 255, 255));
+        textFieldDNI.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textFieldDNI.setForeground(new java.awt.Color(0, 0, 0));
+        textFieldDNI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        labelReferencia1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelReferencia1.setForeground(new java.awt.Color(0, 0, 0));
-        labelReferencia1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelReferencia1.setText("NOMBRE");
+        labelNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelNombre.setForeground(new java.awt.Color(0, 0, 0));
+        labelNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelNombre.setText("NOMBRE");
 
-        textFieldReferencia1.setBackground(new java.awt.Color(255, 255, 255));
-        textFieldReferencia1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        textFieldReferencia1.setForeground(new java.awt.Color(0, 0, 0));
-        textFieldReferencia1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldNombre.setBackground(new java.awt.Color(255, 255, 255));
+        textFieldNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textFieldNombre.setForeground(new java.awt.Color(0, 0, 0));
+        textFieldNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        labelReferencia2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelReferencia2.setForeground(new java.awt.Color(0, 0, 0));
-        labelReferencia2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelReferencia2.setText("APELLIDOS");
+        labelApellidos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelApellidos.setForeground(new java.awt.Color(0, 0, 0));
+        labelApellidos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelApellidos.setText("APELLIDOS");
 
-        textFieldReferencia2.setBackground(new java.awt.Color(255, 255, 255));
-        textFieldReferencia2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        textFieldReferencia2.setForeground(new java.awt.Color(0, 0, 0));
-        textFieldReferencia2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldApellidos.setBackground(new java.awt.Color(255, 255, 255));
+        textFieldApellidos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textFieldApellidos.setForeground(new java.awt.Color(0, 0, 0));
+        textFieldApellidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        labelReferencia3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelReferencia3.setForeground(new java.awt.Color(0, 0, 0));
-        labelReferencia3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelReferencia3.setText("CORREO ELECTRÓNICO");
+        labelCorreo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        labelCorreo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCorreo.setText("CORREO ELECTRÓNICO");
 
-        textFieldReferencia3.setBackground(new java.awt.Color(255, 255, 255));
-        textFieldReferencia3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        textFieldReferencia3.setForeground(new java.awt.Color(0, 0, 0));
-        textFieldReferencia3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        textFieldCorreo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textFieldCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        textFieldCorreo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        labelReferencia4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelReferencia4.setForeground(new java.awt.Color(0, 0, 0));
-        labelReferencia4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelReferencia4.setText("NOMBRE DE USUARIO");
+        labelUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        labelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelUsuario.setText("NOMBRE DE USUARIO");
 
-        textFieldReferencia4.setBackground(new java.awt.Color(255, 255, 255));
-        textFieldReferencia4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        textFieldReferencia4.setForeground(new java.awt.Color(0, 0, 0));
-        textFieldReferencia4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        textFieldUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textFieldUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        textFieldUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        labelReferencia5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelReferencia5.setForeground(new java.awt.Color(0, 0, 0));
-        labelReferencia5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelReferencia5.setText("CONTRASEÑA");
+        labelPassword.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelPassword.setForeground(new java.awt.Color(0, 0, 0));
+        labelPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPassword.setText("CONTRASEÑA");
 
-        textFieldReferencia5.setBackground(new java.awt.Color(255, 255, 255));
-        textFieldReferencia5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        textFieldReferencia5.setForeground(new java.awt.Color(0, 0, 0));
-        textFieldReferencia5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldPassword.setBackground(new java.awt.Color(255, 255, 255));
+        textFieldPassword.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textFieldPassword.setForeground(new java.awt.Color(0, 0, 0));
+        textFieldPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("AGREGAR EMPLEADO");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        btnAgregar.setBackground(new java.awt.Color(0, 153, 153));
+        btnAgregar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("AGREGAR EMPLEADO");
+        btnAgregar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setBackground(new java.awt.Color(0, 153, 153));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("ELIMINAR EMPLEADO");
+        btnEliminar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setBackground(new java.awt.Color(0, 153, 153));
+        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -163,19 +263,21 @@ public class panelEmpleados extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1609, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textFieldReferencia)
-                    .addComponent(labelReferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                    .addComponent(textFieldReferencia1)
-                    .addComponent(labelReferencia1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                    .addComponent(textFieldReferencia2)
-                    .addComponent(labelReferencia2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                    .addComponent(textFieldReferencia3)
-                    .addComponent(labelReferencia3, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                    .addComponent(textFieldReferencia4)
-                    .addComponent(labelReferencia4, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                    .addComponent(textFieldReferencia5)
-                    .addComponent(labelReferencia5, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textFieldDNI)
+                    .addComponent(labelDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                    .addComponent(textFieldNombre)
+                    .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                    .addComponent(textFieldApellidos)
+                    .addComponent(labelApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                    .addComponent(textFieldCorreo)
+                    .addComponent(labelCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                    .addComponent(textFieldUsuario)
+                    .addComponent(labelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                    .addComponent(textFieldPassword)
+                    .addComponent(labelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -185,53 +287,71 @@ public class panelEmpleados extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 197, Short.MAX_VALUE)
-                        .addComponent(labelReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 140, Short.MAX_VALUE)
+                        .addComponent(labelDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(labelReferencia1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldReferencia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(labelReferencia2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldReferencia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(labelReferencia3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldReferencia3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(labelReferencia4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldReferencia4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(labelReferencia5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldReferencia5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(199, 199, 199)))
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(140, 140, 140)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        agregarEmpleado();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        eliminarEmpleado();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel labelReferencia;
-    private javax.swing.JLabel labelReferencia1;
-    private javax.swing.JLabel labelReferencia2;
-    private javax.swing.JLabel labelReferencia3;
-    private javax.swing.JLabel labelReferencia4;
-    private javax.swing.JLabel labelReferencia5;
-    private javax.swing.JTextField textFieldReferencia;
-    private javax.swing.JTextField textFieldReferencia1;
-    private javax.swing.JTextField textFieldReferencia2;
-    private javax.swing.JTextField textFieldReferencia3;
-    private javax.swing.JTextField textFieldReferencia4;
-    private javax.swing.JTextField textFieldReferencia5;
+    private javax.swing.JLabel labelApellidos;
+    private javax.swing.JLabel labelCorreo;
+    private javax.swing.JLabel labelDNI;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelUsuario;
+    private javax.swing.JTable tablaEmpleados;
+    private javax.swing.JTextField textFieldApellidos;
+    private javax.swing.JTextField textFieldCorreo;
+    private javax.swing.JTextField textFieldDNI;
+    private javax.swing.JTextField textFieldNombre;
+    private javax.swing.JTextField textFieldPassword;
+    private javax.swing.JTextField textFieldUsuario;
     // End of variables declaration//GEN-END:variables
 }

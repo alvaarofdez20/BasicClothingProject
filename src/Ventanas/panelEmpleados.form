@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -26,19 +26,21 @@
               <Component id="jScrollPane1" min="-2" pref="1609" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="textFieldReferencia" alignment="0" max="32767" attributes="0"/>
-                  <Component id="labelReferencia" alignment="0" pref="293" max="32767" attributes="0"/>
-                  <Component id="textFieldReferencia1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="labelReferencia1" alignment="0" pref="293" max="32767" attributes="0"/>
-                  <Component id="textFieldReferencia2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="labelReferencia2" alignment="0" pref="293" max="32767" attributes="0"/>
-                  <Component id="textFieldReferencia3" alignment="0" max="32767" attributes="0"/>
-                  <Component id="labelReferencia3" alignment="0" pref="293" max="32767" attributes="0"/>
-                  <Component id="textFieldReferencia4" alignment="0" max="32767" attributes="0"/>
-                  <Component id="labelReferencia4" alignment="0" pref="293" max="32767" attributes="0"/>
-                  <Component id="textFieldReferencia5" alignment="0" max="32767" attributes="0"/>
-                  <Component id="labelReferencia5" alignment="0" pref="293" max="32767" attributes="0"/>
-                  <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="textFieldDNI" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelDNI" alignment="0" pref="293" max="32767" attributes="0"/>
+                  <Component id="textFieldNombre" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelNombre" alignment="0" pref="293" max="32767" attributes="0"/>
+                  <Component id="textFieldApellidos" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelApellidos" alignment="0" pref="293" max="32767" attributes="0"/>
+                  <Component id="textFieldCorreo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelCorreo" alignment="0" pref="293" max="32767" attributes="0"/>
+                  <Component id="textFieldUsuario" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelUsuario" alignment="0" pref="293" max="32767" attributes="0"/>
+                  <Component id="textFieldPassword" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelPassword" alignment="0" pref="293" max="32767" attributes="0"/>
+                  <Component id="btnAgregar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnEliminar" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnLimpiar" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -51,33 +53,37 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="197" max="32767" attributes="0"/>
-                      <Component id="labelReferencia" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="140" max="32767" attributes="0"/>
+                      <Component id="labelDNI" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textFieldReferencia" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldDNI" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="labelReferencia1" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="labelNombre" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textFieldReferencia1" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldNombre" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="labelReferencia2" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="labelApellidos" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textFieldReferencia2" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldApellidos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="labelReferencia3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="labelCorreo" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textFieldReferencia3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldCorreo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="labelReferencia4" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="labelUsuario" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textFieldReferencia4" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="labelReferencia5" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="labelPassword" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textFieldReferencia5" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldPassword" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="40" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+                      <Component id="btnAgregar" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnEliminar" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnLimpiar" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -93,7 +99,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tablaEmpleados">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -114,7 +120,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="labelReferencia">
+    <Component class="javax.swing.JLabel" name="labelDNI">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -126,7 +132,7 @@
         <Property name="text" type="java.lang.String" value="DNI"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldReferencia">
+    <Component class="javax.swing.JTextField" name="textFieldDNI">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -140,7 +146,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelReferencia1">
+    <Component class="javax.swing.JLabel" name="labelNombre">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -152,7 +158,7 @@
         <Property name="text" type="java.lang.String" value="NOMBRE"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldReferencia1">
+    <Component class="javax.swing.JTextField" name="textFieldNombre">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -166,7 +172,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelReferencia2">
+    <Component class="javax.swing.JLabel" name="labelApellidos">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -178,7 +184,7 @@
         <Property name="text" type="java.lang.String" value="APELLIDOS"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldReferencia2">
+    <Component class="javax.swing.JTextField" name="textFieldApellidos">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -192,7 +198,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelReferencia3">
+    <Component class="javax.swing.JLabel" name="labelCorreo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -204,7 +210,7 @@
         <Property name="text" type="java.lang.String" value="CORREO ELECTR&#xd3;NICO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldReferencia3">
+    <Component class="javax.swing.JTextField" name="textFieldCorreo">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -218,7 +224,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelReferencia4">
+    <Component class="javax.swing.JLabel" name="labelUsuario">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -230,7 +236,7 @@
         <Property name="text" type="java.lang.String" value="NOMBRE DE USUARIO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldReferencia4">
+    <Component class="javax.swing.JTextField" name="textFieldUsuario">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -244,7 +250,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelReferencia5">
+    <Component class="javax.swing.JLabel" name="labelPassword">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -256,7 +262,7 @@
         <Property name="text" type="java.lang.String" value="CONTRASE&#xd1;A"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldReferencia5">
+    <Component class="javax.swing.JTextField" name="textFieldPassword">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -270,7 +276,7 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnAgregar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="0" type="rgb"/>
@@ -290,6 +296,57 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnEliminar">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ELIMINAR EMPLEADO"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder bottom="2" left="2" right="2" top="2">
+              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+            </MatteColorBorder>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLimpiar">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="LIMPIAR"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder bottom="2" left="2" right="2" top="2">
+              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+            </MatteColorBorder>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
